@@ -8,6 +8,7 @@ function Out-SummitMessage {
         $Message = 'Hello Summit 2024!'
     )
     process {
+        Write-Verbose -Message 'Something'
         $addedMessage = Get-Message 
 
         $out = [PSCustomObject]@{
