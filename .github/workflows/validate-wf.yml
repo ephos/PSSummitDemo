@@ -49,7 +49,7 @@ jobs:
           '[🧪] Running Pester.'
           $pesterConf = New-PesterConfiguration -Hashtable @{
             Run = @{
-              Path = './tests/'
+              Path = './test/'
             }
             Filter = @{
               ExcludeTag='integration' 
