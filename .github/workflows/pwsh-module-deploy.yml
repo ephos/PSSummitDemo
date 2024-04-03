@@ -28,10 +28,14 @@ jobs:
           $moduleManifestData = Import-PowerShellDataFile -Path ("./src/{0}.psd1" -f $moduleName)
           $moduleManifestVersion = $moduleManifestData.ModuleVersion -as [System.Version]
           $psGalleryModule = Find-Module -Name $moduleName -ErrorAction SilentlyContinue
-          if ([System.Version]$psGalleryModule.Version -le [System.Version]$moduleManifestVersion.Version) {
-            throw "Version hasn't been updated.  Ensure version is h"
+          if ($psGalleryModule) {
+            if ([System.Version]$psGalleryModule.Version -le [System.Version]$moduleManifestVersion.Version) {
+              throw "Version hasn't been updated.  Ensure version is h"
+            }
+          } else { 
+              ("No existing module found on PSGallery: {0}" -f $moduleName)          
           }
-      
+
       - name: Extract Repo Name
         id: repo_name
         run: | 
