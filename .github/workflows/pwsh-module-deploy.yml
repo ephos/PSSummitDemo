@@ -6,7 +6,6 @@ on:
       - main
     paths-ignore:
       - .github/**
-  workflow_call:
 
 jobs:
   validation:
