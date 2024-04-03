@@ -13,7 +13,7 @@ function Get-SumOfNumbers {
         $SecondNumber
     )
     process {
-        #$myUnusedVariable = 'Bobby'
+        $myUnusedVariable = 'Bobby'
 
         $sum = $FirstNumber + $SecondNumber
         $sum
