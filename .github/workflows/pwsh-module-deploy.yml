@@ -11,7 +11,7 @@ on:
 jobs:
   validation:
     name: Validate Module
-    uses: ./.github/workflows/pwsh-module-validate.yml
+    uses: ./.github/workflows/validate-wf.yml
     permissions:
       checks: write
   deploy:
