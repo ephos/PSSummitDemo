@@ -33,8 +33,9 @@ jobs:
           '[📦] Installing Pester and PSScriptAnalyzer for validating.'
           Install-Module -Name Pester -Repository PSGallery -MinimumVersion 5.5.0 -WarningAction SilentlyContinue -SkipPublisherCheck -Confirm:$false -Force
           Install-Module -Name PSScriptAnalyzer -Repository PSGallery -MinimumVersion 1.21.0 -Confirm:$false -Force
+          Install-Module -Name InjectionHunter -Repository PSGallery -MinimumVersion 1.0.0 -Confirm:$false -Force
 
-      - name: PSScriptAnalyzer Linting
+      - name: PSScriptAnalyzer - Linting Scan
         shell: pwsh
         run: |
           '[🔍] Running Script Analyzer.'
@@ -43,6 +44,17 @@ jobs:
           if ($violations.Severity -contains 'Error') {
             throw 'Failed PSScriptAnalyzer rules!'
           }
+          
+      - name: PSScriptAnalyzer - Injection Threat Scan
+        shell: pwsh
+        run: |
+          '[🔍] Running Script Analyzer - Injection Hunter.'
+          $violations = Invoke-ScriptAnalyzer -Path .\src\ -Recurse -Severity Error, Warning, ParseError -ReportSummary
+          $violations | Format-Table -AutoSize
+          if ($violations.Severity -contains 'Error') {
+            throw 'Failed InjectionHunter rules!'
+          }
+
       - name: Pester Test Runs 
         shell: pwsh
         run: |
