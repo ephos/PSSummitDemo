@@ -32,7 +32,7 @@ jobs:
         run: |
           '[📦] Installing Pester and PSScriptAnalyzer for validating.'
           Install-Module -Name Pester -Repository PSGallery -MinimumVersion 5.5.0 -WarningAction SilentlyContinue -SkipPublisherCheck -Confirm:$false -Force
-          Install-Module -Name PSScriptAnalyzer -Repository PSGallery -MinimumVersion 1.21.0 -Confirm:$false -Force
+          Install-Module -Name PSScriptAnalyzer -Repository PSGallery -MinimumVersion 1.24.0 -Confirm:$false -Force
           Install-Module -Name InjectionHunter -Repository PSGallery -MinimumVersion 1.0.0 -Confirm:$false -Force
 
       - name: PSScriptAnalyzer - Linting and Injection Hunter
